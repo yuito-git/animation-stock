@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+//============================================
+//  Global
+//============================================
+//@forwardはscssファイルをグローバルに使えるよう読み込み、@useで呼び出された時に、
+//mixin、関数、変数を他のファイルでも使えるようにする機能(まだ理解曖昧です)
+@forward "setting";
+@forward "function";
+@forward "mixin";
+@forward "animation";

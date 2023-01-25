@@ -1,0 +1,130 @@
+@charset 'UTF-8';
+@use "sass:math";
+@use "../../global"as *;
+
+/*
+  Hamburger
+*/
+.p-hamburger {
+  $this: &;
+  position: fixed;
+
+  z-index: 4;
+  top: 0;
+  right: 5%;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  transition-property: transform;
+  transition-duration: 0.6s;
+  transition-timing-function: $easing;
+  border: 0;
+  text-align: center;
+
+  @include mq(lg) {
+    display: none;
+  }
+
+  &__line {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 24px;
+    height: 3px;
+    margin: auto;
+    transition-property: transform, background-color, opacity, transform-origin;
+    transition-duration: $duration;
+    transition-timing-function: $easing;
+
+    border-radius: 1em;
+    background-color: $primary-text-color;
+  }
+
+  &__line:before,
+  &__line:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    transition: inherit;
+    border-radius: inherit;
+    background-color: inherit;
+  }
+
+  &__line:before {
+    transform: translate3d(0, -8px, 0);
+  }
+
+  &__line:after {
+    transform: translate3d(0, 8px, 0);
+  }
+
+  &__label {
+    display: inline-block;
+    position: absolute;
+    top: 24px;
+    right: 0;
+    left: 0;
+    font-size: pxToRem(10px);
+  }
+
+  &:hover,
+  &:focus {
+    #{$this}__line {
+      &::before {
+        transform: translate3d(40%, -175%, 0) rotate(45deg) scaleX(0.5);
+      }
+
+      &::after {
+        transform: translate3d(40%, 175%, 0) rotate(-45deg) scaleX(0.5);
+      }
+    }
+  }
+
+  .is-drawerActive & {
+    &__line {
+      background-color: transparent;
+
+      &:before,
+      &:after {
+        transform: translate3d(0, 0, 0);
+        background-color: $primary-text-color;
+      }
+
+      &:before {
+        transform: rotate(-45deg);
+      }
+
+      &:after {
+        transform: rotate(45deg);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      #{$this}__line {
+        background-color: $primary-text-color;
+
+        &::before,
+        &::after {
+          // transform-origin: 0% 50%;
+          transition-property: transform, background-color, opacity, transform-origin;
+          // transition-property: transform;
+        }
+
+        &::before {
+          transform: translate3d(-40%, -175%, 0) rotate(-45deg) scaleX(0.5);
+        }
+
+        &::after {
+          transform: translate3d(-40%, 175%, 0) rotate(45deg) scaleX(0.5);
+        }
+      }
+    }
+  }
+}

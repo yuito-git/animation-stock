@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+@use "../setting"as *;
+@use "sass:map";
+
+@mixin ly($key) {
+  @if (map-has-key($layer, $key)) {
+    z-index: map.get($layer, $key);
+  }
+
+  @else {
+    @error "$layerに#{$key}ってキーは無いよ! setting/_layout.scssを確認して!";
+  }
+}

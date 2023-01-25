@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+//====================================
+//  Typeface
+//====================================
+
+$font-set-primary: roboto,
+"Noto Sans JP",
+sans-serif;
+
+//* =======================================================
+//* Type Settings
+//* =======================================================
+
+//--Noto Sans >ver.
+// $fontMain:'Noto Sans JP',
+// '游ゴシック',
+// 'Yu Gothic',
+// '游ゴシック体',
+// 'YuGothic',
+// 'ヒラギノ角ゴ Pro W3',
+// 'Hiragino Kaku Gothic Pro',
+// 'Meiryo UI',
+// 'メイリオ',
+// Meiryo,
+// sans-serif;
+
+//-->ヒラギノver.
+// $fontMain: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro", "メイリオ",Meiryo,"ＭＳ Ｐゴシック", "MS PGothic",sans-serif;
+
+//-->游ゴシックver.
+//$fontMain:"游ゴシック Medium","Yu Gothic Medium","游ゴシック体",YuGothic,sans-serif;
+
+//--> English ver.
+$font-english: "Roboto",
+arial,
+sans-serif;

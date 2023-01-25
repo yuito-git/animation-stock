@@ -1,0 +1,244 @@
+@charset 'UTF-8';
+@use "sass:math";
+@use "../global"as *;
+
+/*
+Grid
+*/
+
+.l-grid {
+  $this: &;
+
+  // Grid専用
+  // ----------------------------
+
+  &[data-mode="grid"] {
+    display: grid;
+
+    @each $device,
+    $breakpoint in $breakpoints {
+      @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
+
+        // Gap
+        // ----------------------------
+        @each $size,
+        $val in $gaps {
+          &[data-gap~="#{$device}:#{$size}"] {
+            gap: pxToRem($val);
+          }
+
+          &[data-gap~="#{$device}:#{$size}Row"] {
+            row-gap: pxToRem($val);
+          }
+
+          &[data-gap~="#{$device}:#{$size}Column"] {
+            column-gap: pxToRem($val);
+          }
+        }
+
+        // Repeat
+        // ----------------------------
+
+        @for $i from 1 through $column {
+          &[data-repeat~="#{$device}:#{$i}"] {
+            grid-template-columns: repeat($i, 1fr);
+            grid-template-rows: 1fr;
+          }
+        }
+      }
+    }
+
+    // Direction
+    // ----------------------------
+    &[data-dir="reverseRow"] {
+      direction: rtl;
+    }
+  }
+
+  // Flex専用
+  // ----------------------------
+
+  &[data-mode="flex"] {
+    display: flex;
+    flex-wrap: wrap;
+
+    // Direction
+    // ----------------------------
+    &[data-dir="normal"] {
+      flex-direction: row;
+    }
+
+    &[data-dir="reverse"] {
+      flex-direction: row-reverse;
+    }
+
+    // Gap
+    // ----------------------------
+
+    &[data-gap] {
+      width: auto;
+
+      &>#{$this}__item {
+        border: solid transparent;
+        background-clip: padding-box;
+      }
+    }
+
+    @each $device,
+    $breakpoint in $breakpoints {
+      @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
+
+        @each $size,
+        $val in $gaps {
+          &[data-gap~="#{$device}:#{$size}"] {
+            //余計なborderをネガティブマージンで消す。2で割るのは、隣り合う要素の余白1つ分を消すため
+            margin: math.div(pxToRem(-$val), 2);
+
+            &>#{$this}__item {
+              border-width: math.div(pxToRem($val), 2); //四隅に余白用のborderを指定
+            }
+          }
+        }
+
+        // グリッド何個分の領域を確保するか
+        // ----------------------------
+
+        &>#{$this}__item {
+          @for $i from 1 through $column {
+            &[data-cols~="#{$device}:#{$i}"] {
+              width: math.percentage(math.div($i, $column));
+            }
+          }
+
+          &[data-cols~="#{$device}:Five"] {
+            width: 20%;
+          }
+
+          &[data-cols~="#{$device}:Auto"] {
+            width: auto;
+          }
+        }
+
+        @for $i from 0 through 3 {
+
+          // Grow
+          // ----------------------------
+          &[data-grow~="#{$device}:#{$i}"] {
+            flex-grow: $i;
+          }
+        }
+      }
+    }
+  }
+
+  // 共通設定
+  // ----------------------------
+
+  // Alignment(Container)
+  // ----------------------------
+  @each $device,
+  $breakpoint in $breakpoints {
+    @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
+      &[data-align~="#{$device}:left"] {
+        justify-content: flex-start;
+      }
+
+      &[data-align~="#{$device}:center"] {
+        justify-content: center;
+      }
+
+      &[data-align~="#{$device}:right"] {
+        justify-content: flex-end;
+      }
+
+      &[data-align~="#{$device}:justify"] {
+        justify-content: space-between;
+      }
+
+      &[data-align~="#{$device}:top"] {
+        align-items: flex-start;
+      }
+
+      &[data-align~="#{$device}:middle"] {
+        align-items: center;
+      }
+
+      &[data-align~="#{$device}:bottom"] {
+        align-items: flex-end;
+      }
+    }
+  }
+
+  // Grow
+  // ----------------------------
+  &[data-grow="1"] {
+    flex-grow: 1;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    @each $device,
+    $breakpoint in $breakpoints {
+      @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
+
+        // Alignment(Item)
+        // ----------------------------
+        &[data-align~="#{$device}:left"] {
+          justify-self: flex-start;
+        }
+
+        &[data-align~="#{$device}:center"] {
+          justify-self: center;
+        }
+
+        &[data-align~="#{$device}:right"] {
+          justify-self: flex-end;
+        }
+
+        &[data-align~="#{$device}:top"] {
+          align-self: flex-start;
+        }
+
+        &[data-align~="#{$device}:middle"] {
+          align-self: center;
+        }
+
+        &[data-align~="#{$device}:bottom"] {
+          align-self: flex-end;
+        }
+
+        &[data-position~="#{$device}:stickyTop"] {
+          position: sticky;
+          top: 0;
+        }
+
+        &[data-position~="#{$device}:static"] {
+          position: static;
+        }
+
+        @for $i from 0 through 3 {
+
+          // Order
+          // ----------------------------
+          &[data-order~="#{$device}:#{$i}"] {
+            order: $i;
+          }
+        }
+      }
+    }
+
+    &.-bgLightGrey {
+      background-color: #efefef;
+    }
+
+    &.-bgWhite {
+      background-color: #fafafa;
+    }
+
+    &.-bgDark {
+      background-color: #000;
+    }
+  }
+}

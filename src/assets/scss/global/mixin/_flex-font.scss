@@ -1,0 +1,9 @@
+@charset 'UTF-8';
+@use "../setting"as *;
+
+@use "../function"as *;
+
+@mixin ff($minFontSize, $maxFontSize, $minWidth: $sp-comp-width, $maxWidth: $pc-comp-width) {
+  font-size: pxToRem($maxFontSize); // clamp効かないブラウザ用
+  font-size: flexClamp($minFontSize, $maxFontSize, $minWidth, $maxWidth);
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- maximum-scale=1.0 でブラウザの自動拡大倍率を等倍にする、デフォルトでは1.6のため -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
+  <meta name="description" content="各ページ固有の説明文を124文字程度で" />
+  <!-- =====================================================================
+    OGP設定
+  ========================================================================-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="【twitterのアカウント名】" />
+  <meta property="og:url" content="【サイトURL】" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="【サイト名】 | 〇〇〇〇" />
+  <meta property="og:description" content="各ページ固有の説明文を124文字程度で" />
+  <meta property="og:site_name" content="【サイト名】" />
+  <!-- <meta property="og:image" content="【サイトURL】OGP画像のファイルパス" /> -->
+  <meta property="og:image:width" content="OGP画像の横幅、単位不要" />
+  <meta property="og:image:height" content="OGP画像の高さ、単位不要" />
+  <!--日本がターゲットの場合記載-->
+  <meta property="og:locale" content="ja_JP" />
+  <!-- 電話番号として誤認識しないようにする-->
+  <meta name="format-detection" content="telephone=no">
+  <!-- 検索エンジン向けに正規ページのURLを設定 -->
+  <link rel="canonical" href="【サイトURL】/" />
+  <!-- GoogleFonts読み込み 【参考】https://t32k.me/mol/log/optimize-webfont-loading/-->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap">
+  <!-- CSS読み込み -->
+  <link rel="stylesheet" href="/assets/css/common.css" />
+  <!-- ファビコン設定 svg対応の場合はsvgでそれ以外はicoで設定 -->
+  <!-- <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico"> -->
+  <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg"> -->
+  <!-- WebClipIcon スマホのホーム画面に登録した際に表示 -->
+  <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+  <!-- 文書の著者の情報であることを示す、「mailto:」というスキームを利用すると、リンク先として、メールアドレスを指定 -->
+  <!-- <link rel="author" href="/humans.txt" /> -->
+  <title>【サイト名】 | 〇〇〇〇</title>
+  <!-- JSを非同期で読み込む、実行のタイミングは、JSとHTMLの読み込みが終わった後 -->
+  <!-- <script src="/assets/js/main.bundle.js" defer></script> -->
+  <!-- 検索結果に表示させたくないページに必要 noindex(検索結果に表示させない)、nofolow(ページ内のリンクを追跡しない)  -->
+  <!-- meta name="robots" content="noindex,nofollow" -->
+</head>
+
+<body>
+  <h1>Sample</h1>
+  <p>This is Sample page.</p>
+</body>
+
+</html>
