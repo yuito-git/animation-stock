@@ -1,7 +1,6 @@
 import legacy from "@vitejs/plugin-legacy";
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
-import checker from 'vite-plugin-checker';
 import { resolve } from "path";
 
 export default defineConfig({
@@ -15,14 +14,9 @@ export default defineConfig({
       fix: true,
       build: true
     }),
-    checker({
-      eslint: {
-        lintCommand: 'eslint "./src/**/*.js"',
-      }
-    })
 
   ],
-  resolve: {
+  resolve: {//何用？
     alias: {
       "@": resolve(__dirname, "src")
     }
