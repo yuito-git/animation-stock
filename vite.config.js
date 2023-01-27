@@ -2,6 +2,7 @@ import legacy from "@vitejs/plugin-legacy";
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
+import viteImagemin from "vite-plugin-imagemin";
 
 export default defineConfig({
   root: "src",//作業中ディレクトリからindex.htmlが置かれている場所
@@ -13,6 +14,33 @@ export default defineConfig({
     stylelint({
       fix: true,
       build: true
+    }),
+    viteImagemin({
+      gifsicle: {
+        optimizationLevel: 7,
+        interlaced: false,
+      },
+      optipng: {
+        optimizationLevel: 7,
+      },
+      mozjpeg: {
+        quality: 20,
+      },
+      pngquant: {
+        quality: [0.8, 0.9],
+        speed: 4,
+      },
+      svgo: {
+        plugins: [
+          {
+            name: "removeViewBox",
+          },
+          {
+            name: "removeEmptyAttrs",
+            active: false,
+          },
+        ],
+      },
     }),
 
   ],
