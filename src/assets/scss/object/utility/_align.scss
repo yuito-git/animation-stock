@@ -13,7 +13,7 @@
 
   @each $device,
   $breakpoint in $breakpoints {
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
       &[data-align~="#{$device}:left"] {
         text-align: left;
       }
