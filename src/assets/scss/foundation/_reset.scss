@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global"as *;
+@use "../global" as *;
 /*
   1.1 - Reset
 ---------------------------------------------- */
@@ -202,8 +202,6 @@ body {
   //・https://ics.media/entry/14087/#otf
   // font-feature-settings: "palt";
   font-feature-settings: "pkna";
-
-
 
   .is-drawerActive & {
     //is-drawerActiveのついたbody要素
@@ -519,7 +517,6 @@ template,
  * Prettier ignore
  */
 @media (prefers-reduced-motion: reduce) {
-
   //OSの「視差効果」設定が有効の時
   //【NG例】
   //*,

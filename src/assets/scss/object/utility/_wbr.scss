@@ -1,14 +1,12 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../../global"as *;
+@use "../../global" as *;
 
 /*
   wbr
 */
 .u-wbr {
-
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @include mq($device) {
       &.-#{$device} {
         display: inline-block;

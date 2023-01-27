@@ -1,7 +1,7 @@
 @charset 'UTF-8';
-@use "../setting"as *;
+@use "../setting" as *;
 
-@use "../function"as *;
+@use "../function" as *;
 @use "sass:math";
 @use "sass:map";
 
@@ -11,12 +11,9 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-
     //ホバー可能かつマウスなどの正確性のあるポインターデバイスを使用している場合
     &:hover {
       @content;
     }
   }
-
-
 }

@@ -15,7 +15,8 @@ $tab-comp-width: 768px;
 $pc-comp-width: 1400px;
 
 // ブレークポイント
-$breakpoints: (min: 0.00001px,
+$breakpoints: (
+  min: 0.00001px,
   xxs: 360px,
   xs: 414px,
   sm: 576px,
@@ -26,7 +27,8 @@ $breakpoints: (min: 0.00001px,
 ) !default;
 
 // 余白
-$spaces: (xxsmall: 16px,
+$spaces: (
+  xxsmall: 16px,
   xsmall: 32px,
   small: 48px,
   medium: 64px,
@@ -40,7 +42,8 @@ $column: 12;
 
 // Gutter Size
 
-$gaps: (xxsmall: 8px,
+$gaps: (
+  xxsmall: 8px,
   xsmall: 16px,
   small: 24px,
   medium: 30px,
@@ -53,7 +56,8 @@ $gaps: (xxsmall: 8px,
 //* Layer Setting
 //* =======================================================
 
-$layer: ("modal": 1100,
+$layer: (
+  "modal": 1100,
   "drawer": 1040,
   "sp-menu": 1035,
   "floating": 1030,

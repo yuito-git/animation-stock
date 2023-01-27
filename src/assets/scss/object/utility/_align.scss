@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../../global"as *;
+@use "../../global" as *;
 
 //====================================
 //  Align
@@ -10,9 +10,7 @@
   Align
 */
 .u-align {
-
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: math.div($breakpoint, 16px) * 1em) {
       &[data-align~="#{$device}:left"] {
         text-align: left;

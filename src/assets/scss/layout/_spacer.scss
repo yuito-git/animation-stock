@@ -1,18 +1,14 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../global"as *;
+@use "../global" as *;
 
 /*
   Spacer
 -----------------------------------------------------*/
 .l-spacer {
-
-  @each $device,
-  $breakpoint in $breakpoints {
+  @each $device, $breakpoint in $breakpoints {
     @media screen and (min-width: #{math.div($breakpoint,16px) * 1em}) {
-
-      @each $size,
-      $val in $spaces {
+      @each $size, $val in $spaces {
         &[data-y~="#{$device}:#{$size}"] {
           padding: pxToRem($val) 0;
         }
