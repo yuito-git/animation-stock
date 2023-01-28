@@ -1,0 +1,9 @@
+mixin globalNav(items, current)
+  ul.p-globalNav
+    each item in items
+      - let isCurrent = false;
+      //- mixinで渡されたパスが現在のパスと一致している場合
+      if current == item.path
+        - isCurrent = true;
+      //- 現在のパスの場合、is-activeクラスを付与、それ以外は何も付与しない
+      li: a(href=item.path, class= isCurrent ? 'is-active' : '') #{item.name}

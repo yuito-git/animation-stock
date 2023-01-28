@@ -36,6 +36,7 @@
     "vite": "^4.0.0",
     "vite-plugin-checker": "^0.5.5",
     "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-pug": "^0.3.2",
     "vite-plugin-stylelint": "^4.1.6"
   }
 }

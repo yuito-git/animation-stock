@@ -1,0 +1,50 @@
+//- ================================
+//- 設定ファイル
+//- ================================
+-
+  //- サイト全体設定
+  const SITE_NAME = '【サイト名】';
+  const SITE_URL = '【サイトURL】';
+  const ROOT_PATH = '/';
+  let CURRENT_PATH = './';
+  let IMAGE_PATH = './assets/img/';
+
+
+  //- SNS設定
+  const TWITTER = '【Twitterのアカウント名】';
+  const FACEBOOK = '【Facebookのアカウント名】';
+
+  //- OGP & Schema
+  const COMPANY_NAME = '【会社名】';
+  const COMPANY_OWNER = '【代表者】';
+  const COMPANY_DATE = '【設立日】';
+  const COMPANY_TEL = '【電話番号】';
+  const COMPANY_LOGO = SITE_URL + '【ロゴ画像のパス】';
+  const COMPANY_POSTAL_CODE = '【郵便番号】';
+  const COMPANY_PREF = '【都道府県】';
+  const COMPANY_ADDRESS1 = '【市、町】';
+  const COMPANY_ADDRESS2 = '【番地】';
+
+
+  const NOW = Date.now();
+
+
+  //- グローバルナビゲーションン
+  const items = [
+    {
+      name: 'Home',
+      path: ROOT_PATH
+    },
+    {
+      name: 'About',
+      path: ROOT_PATH + 'about/'
+    },
+    {
+      name: 'Service',
+      path: ROOT_PATH + 'service/'
+    },
+    {
+      name: 'Contact',
+      path: ROOT_PATH + 'contact/'
+    }
+  ];

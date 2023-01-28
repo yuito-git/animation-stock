@@ -1,0 +1,31 @@
+script(type="application/ld+json").
+  {
+    "@context" : "https://schema.org",
+    "@type" : "Organization",
+    "name" : "#{COMPANY_NAME}",
+    "founder":"#{COMPANY_OWNER}",
+    "foundingDate":"#{COMPANY_DATE}",
+    "description" : "#{page.description}",
+    "url" : "#{page.siteUrl}",
+    "logo": "#{COMPANY_LOGO}",
+    "telephone" : "+81-#{COMPANY_TEL}",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "#{COMPANY_ADDRESS1}",
+        "addressRegion": "#{COMPANY_PREF}",
+        "postalCode": "#{COMPANY_POSTAL_CODE}",
+        "streetAddress": "#{COMPANY_ADDRESS2}",
+        "addressCountry": "JP"
+    },
+    "contactPoint" :[
+        {
+          "@type" : "ContactPoint",
+          "telephone" : "+81-#{COMPANY_TEL}",
+          "contactType" : "customer service"
+        }
+    ]},
+    "sameAs":[
+      "https://www.facebook.com/#{FACEBOOK}",
+      "https://twitter.com/#{TWITTER}"
+    ]
+  }

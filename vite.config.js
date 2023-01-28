@@ -4,6 +4,7 @@ import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
+import pugPlugin from "vite-plugin-pug"
 
 const dir = {
   src: "src",
@@ -28,7 +29,7 @@ documents.forEach((document) => {
 
 
 export default defineConfig({
-  root: dir.src,//作業中ディレクトリからindex.htmlが置かれている場所
+  root: `${dir.src}`,//作業中ディレクトリからindex.htmlが置かれている場所
 
   plugin: [
     legacy({
@@ -37,6 +38,10 @@ export default defineConfig({
     stylelint({
       fix: true,
       build: true
+    }),
+    pugPlugin({
+      pretty: true,
+      name: "my pug"
     }),
     viteImagemin({
       gifsicle: {
@@ -77,7 +82,7 @@ export default defineConfig({
   },
   optimizeDeps: {
 
-    entries: "src"// Could not auto-determine entry point from rollupOptions or html files and there are no explicit optimizeDeps.include patternsの解決
+    entries: dir.src// Could not auto-determine entry point from rollupOptions or html files and there are no explicit optimizeDeps.include patternsの解決
   },
 
   build: {

@@ -1,0 +1,22 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width, initial-scale=1.0")
+if page.description !== ''
+  meta(name="description", content=page.description)
+meta(name="twitter:card" content="summary_large_image")
+meta(name="twitter:site" content=TWITTER)
+meta(property="og:url" content=SITE_URL)
+meta(property="og:type" content="website")
+meta(property="og:title" content=page.title)
+if page.description !== ''
+  meta(property="og:description" content=page.description)
+meta(property="og:site_name" content=SITE_NAME)
+if page.image !== ''
+  meta(property="og:image" content=page.image)
+meta(property="og:locale" content="ja_JP")
+link(rel="canonical" href=SITE_URL + page.path)
+link(rel="stylesheet", href=`${CURRENT_PATH}assets/scss/common.css?${NOW}`)
+link(rel="shortcut icon" href=`${CURRENT_PATH}favicon.ico`)
+link(rel="apple-touch-icon" href=`${CURRENT_PATH}apple-touch-icon.png`)
+link(rel="author" href=`${CURRENT_PATH}humans.txt`)
+script(type="module" src=`${CURRENT_PATH}assets/js/main.js?${NOW}`, defer)
+title #{page.title}
