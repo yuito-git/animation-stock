@@ -4,10 +4,11 @@ import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
-import pugPlugin from "vite-plugin-pug"
+
 
 const dir = {
   src: "src",
+  base: "./",
   publicDir: "../public",
   assetsDir: "assets",
   outDir: "../dist",
@@ -29,6 +30,7 @@ documents.forEach((document) => {
 
 
 export default defineConfig({
+  // base: dir.base,
   root: `${dir.src}`,//作業中ディレクトリからindex.htmlが置かれている場所
 
   plugin: [
@@ -39,10 +41,10 @@ export default defineConfig({
       fix: true,
       build: true
     }),
-    pugPlugin({
-      pretty: true,
-      name: "my pug"
-    }),
+    // pugPlugin({
+    //   pretty: true,
+    //   name: "my pug"
+    // }),
     viteImagemin({
       gifsicle: {
         optimizationLevel: 7,
@@ -78,6 +80,7 @@ export default defineConfig({
     }
   },
   server: {
+    host: true,
     port: 3000
   },
   optimizeDeps: {
