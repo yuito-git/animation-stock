@@ -3,9 +3,32 @@ import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
 import viteImagemin from "vite-plugin-imagemin";
+import globule from "globule";
+
+const dir = {
+  src: "src",
+  publicDir: "../public",
+  assetsDir: "assets",
+  outDir: "../dist",
+};
+
+// ==============================================
+// マルチページの設定
+// ==============================================
+const inputs = {};
+const documents = globule.find([`./${dir.src}/**/*.html`], {
+  ignore: [`./${dir.src}/**/_*.html`],
+});
+documents.forEach((document) => {
+  const fileName = document.replace(`./${dir.src}/`, "");
+  const key = fileName.replace("index.html", "main").replace("/main", "");
+
+  inputs[key] = resolve(__dirname, dir.src, fileName);
+});
+
 
 export default defineConfig({
-  root: "src",//作業中ディレクトリからindex.htmlが置かれている場所
+  root: dir.src,//作業中ディレクトリからindex.htmlが置かれている場所
 
   plugin: [
     legacy({
@@ -46,7 +69,7 @@ export default defineConfig({
   ],
   resolve: {//何用？
     alias: {
-      "@": resolve(__dirname, "src")
+      "@": resolve(__dirname, dir.src)
     }
   },
   server: {
@@ -58,14 +81,14 @@ export default defineConfig({
   },
 
   build: {
-    outDir: "../dist",
-    assetsDir: "assets",
+    outDir: dir.outDir,
+    assetsDir: dir.assetsDir,
     emptyOutDir: true,
     minify: false,
     rollupOptions: {
       //rollupに設定するオプション
 
-      input: "src/index.html",//エントリーポイントを変更
+      input: { ...inputs },//エントリーポイントを変更
       output: {
         entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
