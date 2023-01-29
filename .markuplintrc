@@ -30,5 +30,8 @@
     "no-empty-palpable-content": false,
     "no-boolean-attr-value": false,
     "require-datetime": true
+  },
+  "parser":{
+    ".(?:pug|jade)$": "@markuplint/pug-parser"
   }
 }

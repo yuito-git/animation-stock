@@ -1,9 +1,11 @@
-import legacy from "@vitejs/plugin-legacy";
+// import legacy from "@vitejs/plugin-legacy";
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
+import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static'
+
 
 
 const dir = {
@@ -18,8 +20,8 @@ const dir = {
 // マルチページの設定
 // ==============================================
 const inputs = {};
-const documents = globule.find([`./${dir.src}/**/*.html`], {
-  ignore: [`./${dir.src}/**/_*.html`],
+const documents = globule.find([`./${dir.src}/html/**/*.html`, `./${dir.src}/pug/**/*.pug`], {
+  ignore: [`./${dir.src}/html/**/_*.html`, `./${dir.src}/pug/**/_*.pug`],
 });
 documents.forEach((document) => {
   const fileName = document.replace(`./${dir.src}/`, "");
@@ -30,21 +32,57 @@ documents.forEach((document) => {
 
 
 export default defineConfig({
-  // base: dir.base,
-  root: `${dir.src}`,//作業中ディレクトリからindex.htmlが置かれている場所
+  root: 'src',
+  base: dir.base,
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, dir.src)
+    }
+  },
+  server: {
+    host: true,
+    port: 3000
+  },
+  optimizeDeps: {
+    entries: dir.src
+  },
 
-  plugin: [
-    legacy({
-      targets: ["defaults", "not IE 11"]
-    }),
+
+  build: {
+    outDir: dir.outDir,
+    assetsDir: dir.assetsDir,
+    emptyOutDir: true,
+    minify: false,
+    rollupOptions: {
+      input: { ...inputs },
+      output: {
+        entryFileNames: `assets/js/[name].js`,
+        chunkFileNames: `assets/js/[name].js`,
+        format: "es",
+        assetFileNames: ({ name }) => {
+          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(name ?? '')) {
+            return 'assets/images/[name].[ext]';
+          }
+          if (/\.css$/.test(name ?? '')) {
+            return 'assets/css/[name].[ext]';
+          }
+          if (/\.js$/.test(name ?? '')) {
+            return 'assets/js/[name].[ext]';
+          }
+          return 'assets/[name].[ext]';
+        }
+      }
+    }
+  },
+  plugins: [
+    // legacy({
+    //   targets: ["defaults", "not IE 11"]
+    // }),
     stylelint({
       fix: true,
       build: true
     }),
-    // pugPlugin({
-    //   pretty: true,
-    //   name: "my pug"
-    // }),
+
     viteImagemin({
       gifsicle: {
         optimizationLevel: 7,
@@ -72,50 +110,9 @@ export default defineConfig({
         ],
       },
     }),
-
+    vitePluginPugStatic({
+      buildOptions: { basedir: "./src" },
+      serveOptions: { basedir: "./src" },
+    }),
   ],
-  resolve: {//何用？
-    alias: {
-      "@": resolve(__dirname, dir.src)
-    }
-  },
-  server: {
-    host: true,
-    port: 3000
-  },
-  optimizeDeps: {
-
-    entries: dir.src// Could not auto-determine entry point from rollupOptions or html files and there are no explicit optimizeDeps.include patternsの解決
-  },
-
-  build: {
-    outDir: dir.outDir,
-    assetsDir: dir.assetsDir,
-    emptyOutDir: true,
-    minify: false,
-    rollupOptions: {
-      //rollupに設定するオプション
-
-      input: { ...inputs },//エントリーポイントを変更
-      output: {
-        entryFileNames: `assets/js/[name].js`,
-        chunkFileNames: `assets/js/[name].js`,
-        format: "es",
-        assetFileNames: ({ name }) => {
-          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(name ?? '')) {
-            return 'assets/images/[name].[ext]';
-          }
-          if (/\.css$/.test(name ?? '')) {
-            return 'assets/css/[name].[ext]';
-          }
-          if (/\.js$/.test(name ?? '')) {
-            return 'assets/js/[name].[ext]';
-          }
-          return 'assets/[name].[ext]';
-        }
-      }
-
-    },
-  }
-
 })

@@ -9,28 +9,26 @@
   <!-- =====================================================================
     OGP設定
   ========================================================================-->
-  <meta name="twitter:card" content="summary_large_image" />
+  <!-- <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="【twitterのアカウント名】" />
   <meta property="og:url" content="【サイトURL】" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="【サイト名】 | 〇〇〇〇" />
-  <meta property="og:description" content="各ページ固有の説明文を124文字程度で" />
-  <meta property="og:site_name" content="【サイト名】" />
+  <meta property="og:title" content="【サイト名】 | 〇〇〇〇" /> -->
+  <!-- <meta property="og:description" content="各ページ固有の説明文を124文字程度で" /> -->
+  <!-- <meta property="og:site_name" content="【サイト名】" /> -->
   <!-- <meta property="og:image" content="【サイトURL】OGP画像のファイルパス" /> -->
-  <meta property="og:image:width" content="OGP画像の横幅、単位不要" />
-  <meta property="og:image:height" content="OGP画像の高さ、単位不要" />
+  <!-- <meta property="og:image:width" content="OGP画像の横幅、単位不要" />
+  <meta property="og:image:height" content="OGP画像の高さ、単位不要" /> -->
   <!--日本がターゲットの場合記載-->
-  <meta property="og:locale" content="ja_JP" />
+  <!-- <meta property="og:locale" content="ja_JP" /> -->
   <!-- 電話番号として誤認識しないようにする-->
-  <meta name="format-detection" content="telephone=no">
+  <!-- <meta name="format-detection" content="telephone=no"> -->
   <!-- 検索エンジン向けに正規ページのURLを設定 -->
   <link rel="canonical" href="【サイトURL】/" />
   <!-- GoogleFonts読み込み 【参考】https://t32k.me/mol/log/optimize-webfont-loading/-->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" />
-  <link rel="stylesheet" media="print" onload="this.media='all'"
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap">
+  <!-- <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" /> -->
   <!-- CSS読み込み -->
   <link rel="stylesheet" href="/assets/scss/common.scss" />
   <!-- ファビコン設定 svg対応の場合はsvgでそれ以外はicoで設定 -->
@@ -48,12 +46,13 @@
 </head>
 
 <body>
-  <h1>font-size: clamp(1rem, 2vw + .5rem, 1.625rem);</h1>
 
-  <p>
-  <h1>りんご</h1>This is Sample page.
-  </p>
-  <img src="./assets/images/javascript.svg" alt="">
+  <h1>りんご</h1>
+  <img src="../assets/images/javascript.svg" alt="">
+  <template lang="pug">
+    p りんご
+  </template>
+
 </body>
 
 </html>
