@@ -12,6 +12,7 @@ dist/
 dist-ssr
 *.local
 .env
+.stylelintcache
 
 # Editor directories and files
 .vscode/*

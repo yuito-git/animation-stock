@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "html:lint": "markuplint \"src/**/*.html\"",
+    "html:lint": "markuplint \"src/**/*.pug\" \"src/**/*.html\"",
     "es:lint": "eslint \"src/**/*.js\"",
     "style:lint": "stylelint \"src/**/*.scss\"",
     "lint": "npm run html:lint && npm run es:lint -- --fix && npm run style:lint -- --fix",

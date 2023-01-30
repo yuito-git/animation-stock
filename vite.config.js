@@ -1,4 +1,4 @@
-// import legacy from "@vitejs/plugin-legacy";
+// import legacy from "@vitejs/plugin-legacy";//レガシー対応
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
@@ -20,25 +20,17 @@ const dir = {
 // マルチページの設定
 // ==============================================
 const inputs = {};
-const documents = globule.find([`./${dir.src}/html/**/*.html`, `./${dir.src}/pug/**/*.pug`], {
+const documents = globule.find([`./${dir.src}/**/*.html`, `./${dir.src}/**/*.pug`], {
   ignore: [`./${dir.src}/html/**/_*.html`, `./${dir.src}/pug/**/_*.pug`],
 });
 documents.forEach((document) => {
   const fileName = document.replace(`./${dir.src}/`, "");
-  const key = fileName.replace("index.html", "main").replace("/main", "");
-
-  inputs[key] = resolve(__dirname, dir.src, fileName);
+  inputs[fileName] = resolve(__dirname, dir.src, fileName);
 });
 
 
 export default defineConfig({
   root: 'src',
-  base: dir.base,
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, dir.src)
-    }
-  },
   server: {
     host: true,
     port: 3000
@@ -46,7 +38,6 @@ export default defineConfig({
   optimizeDeps: {
     entries: dir.src
   },
-
 
   build: {
     outDir: dir.outDir,
