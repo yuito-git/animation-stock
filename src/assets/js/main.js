@@ -1,4 +1,5 @@
-console.log("hello");
+import { setFillHeight } from "./lib/setFillHeight";
 
-const h1 = document.querySelector("h1");
-console.log(h1);
+window.addEventListener("resize", () => {
+  setFillHeight()
+})
