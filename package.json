@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "html:lint": "markuplint \"src/**/*.pug\" \"src/**/*.html\"",
+    "html:lint": "markuplint \"src/**/{*.pug,*.html}\"",
     "es:lint": "eslint \"src/**/*.js\"",
     "style:lint": "stylelint \"src/**/*.scss\"",
-    "lint": "npm run html:lint && npm run es:lint -- --fix && npm run style:lint -- --fix",
+    "lint": "npm run html:lint   && npm run es:lint -- --fix && npm run style:lint -- --fix ",
     "dev": "npm run lint && vite",
     "build": "npm run lint && vite build",
     "preview": "npm run lint && vite preview "
