@@ -1,4 +1,4 @@
-// import legacy from "@vitejs/plugin-legacy";//レガシー対応
+import legacy from "@vitejs/plugin-legacy";//レガシー対応
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
@@ -66,9 +66,9 @@ export default defineConfig({
     }
   },
   plugins: [
-    // legacy({
-    //   targets: ["defaults", "not IE 11"]
-    // }),
+    legacy({
+      targets: ["defaults", "not IE 11"]
+    }),
     stylelint({
       fix: true,
       build: true
