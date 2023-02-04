@@ -35,15 +35,15 @@ export default defineConfig({
     host: true,
     port: 3000
   },
-  optimizeDeps: {
-    entries: dir.src
-  },
+  // optimizeDeps: {
+  //   entries: dir.src
+  // },
 
   build: {
     outDir: dir.outDir,
-    assetsDir: dir.assetsDir,
+    // assetsDir: dir.assetsDir,
     emptyOutDir: true,
-    minify: false,
+    // minify: false,
     rollupOptions: {
       input: { ...inputs },
       output: {
