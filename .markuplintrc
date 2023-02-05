@@ -33,6 +33,5 @@
   },
   "parser":{
     ".(?:pug|jade)$": "@markuplint/pug-parser"
-  },
-  "excludeFiles": ["./src/**/_*.html", "./src/**/_*.pug"]
+  }
 }
