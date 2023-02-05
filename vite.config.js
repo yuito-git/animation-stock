@@ -1,4 +1,4 @@
-import legacy from "@vitejs/plugin-legacy";//レガシー対応
+// import legacy from "@vitejs/plugin-legacy";//レガシー対応
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
 import { resolve } from "path";
@@ -49,16 +49,13 @@ export default defineConfig({
       output: {
         entryFileNames: `assets/js/[name].js`,
         chunkFileNames: `assets/js/[name].js`,
-        format: "es",
-        assetFileNames: ({ name }) => {
-          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(name ?? '')) {
+        // format: "es",
+        assetFileNames: (assetInfo) => {
+          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(assetInfo.name)) {
             return 'assets/images/[name].[ext]';
           }
-          if (/\.css$/.test(name ?? '')) {
+          if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name].[ext]';
-          }
-          if (/\.js$/.test(name ?? '')) {
-            return 'assets/js/[name].[ext]';
           }
           return 'assets/[name].[ext]';
         }
@@ -66,9 +63,9 @@ export default defineConfig({
     }
   },
   plugins: [
-    legacy({
-      targets: ["defaults", "not IE 11"]
-    }),
+    // legacy({
+    //   targets: ["defaults", "not IE 11"]
+    // }),
     stylelint({
       fix: true,
       build: true
@@ -102,8 +99,8 @@ export default defineConfig({
       },
     }),
     vitePluginPugStatic({
-      buildOptions: { basedir: "./src" },
-      serveOptions: { basedir: "./src" },
+      buildOptions: { basedir: "src" },
+      serveOptions: { basedir: "src" },
     }),
   ],
 })
