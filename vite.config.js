@@ -5,6 +5,7 @@ import path from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static'
+import browserslistToEsbuild from "browserslist-to-esbuild";
 
 
 
@@ -40,13 +41,20 @@ export default defineConfig({
   // optimizeDeps: {
   //   entries: dir.src
   // },
+  esbuild: {
+    supported: {
+      "top-level-await": true
+    }
+  },
 
   build: {
     outDir: dir.outDir,
+    target: browserslistToEsbuild(),
     // assetsDir: dir.assetsDir,
     emptyOutDir: true,
     // minify: false,
     rollupOptions: {
+
       input: { ...inputs },
       output: {
         entryFileNames: "assets/js/[name].js",

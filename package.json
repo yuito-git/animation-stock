@@ -3,13 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
     "html:lint": "markuplint \"src/**/{*.pug,*.html}\"",
     "es:lint": "eslint \"src/**/*.js\"",
     "style:lint": "stylelint \"src/**/*.scss\"",
     "lint": "npm run html:lint   && npm run es:lint -- --fix && npm run style:lint -- --fix ",
     "dev": "npm run lint && vite",
-    "build": "npm run lint && vite build",
+    "build": " vite build",
     "preview": "npm run lint && vite preview "
   },
   "devDependencies": {
@@ -17,6 +20,7 @@
     "@markuplint/pug-parser": "^3.2.0",
     "@vitejs/plugin-legacy": "^4.0.1",
     "autoprefixer": "^10.4.13",
+    "browserslist-to-esbuild": "^1.2.0",
     "css-declaration-sorter": "^6.3.1",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
