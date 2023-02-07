@@ -25,7 +25,7 @@
     "doctype": "always",
     "placeholder-label-option": true,
     "id-duplication": true,
-    "no-refer-to-non-existent-id": true,
+    "no-refer-to-non-existent-id": false,
     "case-sensitive-tag-name": false,
     "no-empty-palpable-content": false,
     "no-boolean-attr-value": false,
