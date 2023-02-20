@@ -7,8 +7,9 @@
     "defaults"
   ],
   "scripts": {
+    "style:lint":"stylelint \"src/**/*.scss\"",
     "html:lint": "markuplint \"src/**/{*.pug,*.html}\"",
-    "lint": "npm run html:lint ",
+    "lint": "npm run html:lint && npm run style:lint -- --fix",
     "dev": "vite",
     "build": " vite build",
     "preview": "vite preview "
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@macropygia/vite-plugin-pug-static": "^0.0.18",
     "@markuplint/pug-parser": "^3.2.0",
+    "@nabla/vite-plugin-eslint": "^1.5.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@vitejs/plugin-legacy": "^4.0.1",
     "autoprefixer": "^10.4.13",
@@ -35,18 +37,17 @@
     "postcss-sort-media-queries": "^4.3.0",
     "prettier": "^2.8.3",
     "sass": "^1.57.1",
-    "stylelint": "^14.16.1",
+    "stylelint": "^15.2.0",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-property-sort-order-smacss": "^9.0.0",
-    "stylelint-config-recommended-scss": "^8.0.0",
+    "stylelint-config-recommended-scss": "^9.0.1",
     "stylelint-order": "^6.0.1",
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.3.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.1",
     "vite-plugin-checker": "^0.5.6",
-    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-imagemin": "^0.6.1",
-    "vite-plugin-stylelint": "^4.1.6"
+    "vite-plugin-stylelint": "^4.2.0"
   }
 }

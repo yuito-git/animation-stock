@@ -1,7 +1,7 @@
 // import legacy from "@vitejs/plugin-legacy";//レガシー対応
 import { defineConfig } from "vite";
-import stylelint from 'vite-plugin-stylelint';
-import eslint from 'vite-plugin-eslint';
+import stylelintVite from 'vite-plugin-stylelint';
+import eslint from '@nabla/vite-plugin-eslint';
 import path from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
@@ -77,12 +77,12 @@ export default defineConfig({
     // legacy({
     //   targets: ["defaults", "not IE 11"]
     // }),
+    stylelintVite({
+      fix: true,
+      build: true,
+    }),
     checker({
       typescript: true,
-    }),
-    stylelint({
-      fix: true,
-      build: true
     }),
     eslint({
       fix: true,
@@ -97,7 +97,7 @@ export default defineConfig({
         optimizationLevel: 7,
       },
       mozjpeg: {
-        quality: 20,
+        quality: 80,
       },
       pngquant: {
         quality: [0.8, 0.9],
