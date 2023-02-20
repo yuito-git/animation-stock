@@ -85,7 +85,9 @@ export default defineConfig({
       typescript: true,
     }),
     eslint({
-      fix: true,
+      eslintOptions: {
+        fix: true,
+      }
     }),
 
     viteImagemin({
