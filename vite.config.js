@@ -1,11 +1,13 @@
 // import legacy from "@vitejs/plugin-legacy";//レガシー対応
 import { defineConfig } from "vite";
 import stylelint from 'vite-plugin-stylelint';
+import eslint from 'vite-plugin-eslint';
 import path from "path";
 import viteImagemin from "vite-plugin-imagemin";
 import globule from "globule";
 import vitePluginPugStatic from '@macropygia/vite-plugin-pug-static'
 import browserslistToEsbuild from "browserslist-to-esbuild";
+import checker from 'vite-plugin-checker';
 
 
 
@@ -75,9 +77,15 @@ export default defineConfig({
     // legacy({
     //   targets: ["defaults", "not IE 11"]
     // }),
+    checker({
+      typescript: true,
+    }),
     stylelint({
       fix: true,
       build: true
+    }),
+    eslint({
+      fix: true,
     }),
 
     viteImagemin({
