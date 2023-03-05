@@ -1,28 +1,43 @@
 @charset 'UTF-8';
 @use "sass:math";
-@use "../setting" as *;
+@use "../setting"as *;
+
+//  単位除去
+//--------------------------------------------
+
+@function stripUnit($number) {
+
+  // $numberの値が数値でかつ、単位が存在する場合、単位を削除して返す
+  @if type-of($number)=="number"and not unitless($number) {
+    //同じ単位の数値で割ると、単位が削除される
+    //32px / (32px * 0 +1)→32px / 1px = 32
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
 
 //  Size
 //--------------------------------------------
 
 // px -> remに変換
-@function pxToRem($size, $base-font-size: 16px) {
-  @return math.div($size, $base-font-size) * 1rem;
+@function pxToRem($size, $base: 16px) {
+  @return math.div(stripUnit($size), stripUnit($base)) * 1rem;
 }
 
 // px -> emに変換
-@function pxToEm($size, $base-font-size: 16px) {
-  @return math.div($size, $base-font-size) * 1em;
+@function pxToEm($size, $base: 16px) {
+  @return math.div(stripUnit($size), stripUnit($base)) * 1em;
 }
 
 // px -> vwに変換
 @function pxToVw($size, $window-size: $sp-comp-width) {
-  @return math.div($size, $window-size) * 100vw;
+  @return math.div(stripUnit($size), stripUnit($window-size)) * 100vw;
 }
 
 //px -> vh に変換
 @function pxToVh($size, $window-size: $sp-comp-width) {
-  @return math.div($size, $window-size) * 100vh;
+  @return math.div(stripUnit($size), stripUnit($window-size)) * 100vh;
 }
 
 //*=======================================================
@@ -56,7 +71,7 @@
   //水平方向の増加量
   $horizontalAmount: $maxX - $minX;
   //傾き(小数点以下を3桁まで)、math.round()は小数点以下を四捨五入する関数
-  $tilt: math.div(math.round(math.div($verticalAmount, $horizontalAmount) * 1000), 1000);
+  $tilt: math.div(math.round(math.div(stripUnit($verticalAmount), stripUnit($horizontalAmount)) * 1000), 1000);
   //切片
   $intercept: pxToRem($minY - $tilt * $minX);
   //結果

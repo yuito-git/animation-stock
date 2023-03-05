@@ -1,5 +1,6 @@
 @charset 'UTF-8';
 @use "../setting"as *;
+@use "../function"as *;
 @use "sass:map";
 @use "sass:math";
 
@@ -11,11 +12,13 @@
   //第一引数に、ブレイクポイント、第二引数にnot演算子使うかの指定
   @if map-has-key($breakpoints, $breakpoint) {
 
+    $widthToEm: pxToEm(stripUnit(map-get($breakpoints, $breakpoint)));
+
     //指定したキーが存在しているかどうか
     @if ($notOperator==true) {
 
       //not演算子で指定するとき
-      @media not all and (min-width: #{math.div(map.get($breakpoints,$breakpoint),16px) * 1em}) {
+      @media not all and (min-width: #{$widthToEm}) {
         //メディアクエリの単位にはemを指定。Safariのバグは無視
         //参考https://note.com/takamoso/n/n802cc3025801
         //$breakpointの幅を含まずそれより小さい幅の時適用
@@ -26,7 +29,7 @@
     }
 
     @else if($notOperator==false) {
-      @media screen and (min-width: #{math.div(map.get($breakpoints, $breakpoint),16px) *1em  }) {
+      @media screen and (min-width: #{$widthToEm}) {
         //$breakpoint以上の幅の時
         @content;
       }
